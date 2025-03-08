@@ -11,10 +11,6 @@ RUN apt-get update \
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
 
-RUN export Q=`curl -s https://api.github.com/repos/espressif/qemu/releases/latest | \
-               jq --raw-output '.assets | .[] | .name' | grep xtensa | \
-               grep x86_64-linux-gnu | head -n 1`; echo "\n\n" https://github.com/espressif/qemu/releases/latest/download/$Q "\n\n"	
-
 RUN export QEMU_DIST=`curl -s https://api.github.com/repos/espressif/qemu/releases/latest | \
                jq --raw-output '.assets | .[] | .name' | grep xtensa | \
                grep x86_64-linux-gnu | head -n 1`; \

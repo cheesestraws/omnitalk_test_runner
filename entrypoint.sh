@@ -3,6 +3,11 @@ set -e
 CODE_PATH="$1"
 . $IDF_PATH/export.sh
 cd "${CODE_PATH}"
+
+echo >> main/tunables.h
+echo '#define TESTS_REBOOT_AFTERWARDS' >> main/tunables.h
+echo '#define TESTS_NO_HANG_ON_FAIL' >> main/tunables.h
+
 idf.py build
 cd build 
 esptool.py --chip esp32 merge_bin --fill-flash-size 4MB -o flash_image.bin @flash_args
