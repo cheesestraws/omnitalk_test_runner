@@ -12,13 +12,13 @@ ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
 ENV IDF_PYTHON_ENV_PATH=/opt/esp/python_env/idf4.4_py3.8_env
 
-RUN export Q=$(curl -s https://api.github.com/repos/espressif/qemu/releases/latest | \
+RUN export Q=`curl -s https://api.github.com/repos/espressif/qemu/releases/latest | \
                jq --raw-output '.assets | .[] | .name' | grep xtensa | \
-               grep x86_64-linux-gnu | head -n 1); echo "\n\n" $Q "\n\n"	
+               grep x86_64-linux-gnu | head -n 1`; echo "\n\n" https://github.com/espressif/qemu/releases/latest/download/$Q "\n\n"	
 
-RUN QEMU_DIST=`curl -s https://api.github.com/repos/espressif/qemu/releases/latest | \
+RUN export QEMU_DIST=`curl -s https://api.github.com/repos/espressif/qemu/releases/latest | \
                jq --raw-output '.assets | .[] | .name' | grep xtensa | \
-               grep x86_64-linux-gnu | head -n 1` \
+               grep x86_64-linux-gnu | head -n 1`; \
                wget --no-verbose https://github.com/espressif/qemu/releases/latest/download/$QEMU_DIST \
                && tar -xf $QEMU_DIST -C /opt \
                && rm ${QEMU_DIST}
