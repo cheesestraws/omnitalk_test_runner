@@ -7,6 +7,7 @@ cd "${CODE_PATH}"
 echo >> main/tunables.h
 echo '#define TESTS_REBOOT_AFTERWARDS' >> main/tunables.h
 echo '#define TESTS_NO_HANG_ON_FAIL' >> main/tunables.h
+echo '#define RUN_TESTS' >> main/tunables.h
 
 idf.py build | tee /github/workspace/run.log
 cd build 
